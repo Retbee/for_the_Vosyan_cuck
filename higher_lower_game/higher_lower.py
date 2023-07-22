@@ -319,8 +319,9 @@ def lets_play():
             guess = input("Type 'A' or 'B': ").lower()
             if guess not in ['a', 'b']:
                 print("Please type only A or B!")
-        if guess == "a" and choice_a["follower_count"] > choice_b["follower_count"] or guess == "b" and choice_a[
-            "follower_count"] < choice_b["follower_count"]:
+        choice_a_winner = choice_a["follower_count"] > choice_b["follower_count"]
+        choice_b_winner = choice_a["follower_count"] < choice_b["follower_count"]
+        if guess == "a" and choice_a_winner or guess == "b" and choice_b_winner:
             winner = choice_a if guess == "a" else choice_b
             score += 1
             winner_list.append(winner)
@@ -332,16 +333,19 @@ def lets_play():
 
 
 def score_count(score):
-    print(f"Right answer! Your score is {score}.")
+    score_msg = f"Right answer! Your score is {score}."
+    return score_msg
 
 
 def score_final(score, guesses_attempt):
-    print(f"Wrong answer. You lose. Your final score is: {score}. Your guesses were: {guesses_attempt}")
+    msg = f"Wrong answer. You lose. Your final score is: {score}. Your guesses were: {guesses_attempt}"
+    return msg
 
 
 def type_accounts(lst1, lst2):
-    print(f"name = {lst1['name']}, description = {lst1['description']}, country = {lst1['country']}")
-    print(f"name = {lst2['name']}, description = {lst2['description']}, country = {lst2['country']}")
+    a = f"name = {lst1['name']}, description = {lst1['description']}, country = {lst1['country']}"
+    b = f"name = {lst2['name']}, description = {lst2['description']}, country = {lst2['country']}"
+    return a, b
 
 
 lets_play()
